@@ -1,12 +1,17 @@
 #!/usr/bin/env node
+const dotenv = require('dotenv');
+/**
+ * Get development environment variable.
+ */
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.load();
+}
 
 /**
  * Module dependencies.
  */
-
-const app = require('../app');
+const { app, server } = require('../app');
 const debug = require('debug')('habx-chatroom:server');
-const http = require('http');
 
 /**
  * Get port from environment and store in Express.
@@ -14,12 +19,6 @@ const http = require('http');
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
-const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.

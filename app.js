@@ -1,29 +1,40 @@
 const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const socketIo = require('socket.io');
+const http = require('http');
 
 const index = require('./routes/index');
-const users = require('./routes/users');
+const chartRoom = require('./routes/chartroom');
 
 const app = express();
+
+// Socket.io
+const server = http.Server(app);
+const io = socketIo(server);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// add socket io to response
+app.use((req, res, next) => {
+  res.io = io;
+  next();
+});
+
 app.use('/', index);
-app.use('/users', users);
+app.use('/chart-room', chartRoom(io));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -43,4 +54,4 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = { app, server };

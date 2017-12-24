@@ -11,6 +11,7 @@
     "no-mixed-operators": ["error", {"allowSamePrecedence": true}],
     "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
     "no-use-before-define": ["error", { "functions": false, "classes": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "consistent-return": ["off"],
     "no-underscore-dangle": ["off"],
     "no-console": ["off"],
