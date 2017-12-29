@@ -1,10 +1,13 @@
 # development env
 **/node_modules
+**/build
 
 # operate system
 .DS_Store
 
-
 .*
 !.gitignore
 !.eslintrc
+
+/client-apps/chat-room-app/**/*.css
+!/client-apps/chat-room-app/**/index.css

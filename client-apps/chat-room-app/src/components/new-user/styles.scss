@@ -1,0 +1,32 @@
+$text-color: #fff;
+
+.new-user{
+    background-color: #000;
+    color: $text-color;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 3px;
+    h1{
+        font-weight: 300;
+        font-size: 180%;
+        margin-top: -10%;
+    }
+    .usernameInput{
+        font-weight: 300;
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid $text-color;
+        outline: none;
+        padding-bottom: 15px;
+        text-align: center;
+        max-width: 400px;
+        width: 80vw;
+        font-size: 180%;
+        color: $text-color;
+    }
+}

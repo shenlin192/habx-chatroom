@@ -7,7 +7,7 @@ const socketIo = require('socket.io');
 const http = require('http');
 
 const index = require('./routes/index');
-const chartRoom = require('./routes/chartroom');
+const chatRoom = require('./routes/chatRoom');
 
 const app = express();
 
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', index);
-app.use('/chart-room', chartRoom(io));
+app.use('/chat-room', chatRoom(io));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
