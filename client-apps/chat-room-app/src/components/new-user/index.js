@@ -26,7 +26,7 @@ class NewUser extends Component {
         <input
           className="usernameInput"
           type="text"
-          maxLength="14"
+          maxLength="30"
           onKeyPress={(e) => {
                  this.handleKeyPress(e);
                }}

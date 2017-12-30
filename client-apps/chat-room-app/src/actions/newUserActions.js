@@ -11,12 +11,12 @@ export function addNewUser(username) {
   })
     .then((response) => {
       const { user } = response.data;
-      localStorage.setItem('id', user._id);
-      localStorage.setItem('name', user.name);
-      localStorage.setItem('color', user.color);
+      sessionStorage.setItem('id', user._id);
+      sessionStorage.setItem('name', user.name);
+      sessionStorage.setItem('color', user.color);
       const payload = {
         id: user._id,
-        name: user.nam,
+        name: user.name,
         color: user.color,
       };
       dispatch({ type: 'ADD_USER', payload });

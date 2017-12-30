@@ -9,5 +9,5 @@ export function dateTransform(date) {
   if (diffDays < 1) {
     return `${messageDate.getHours()}:${messageDate.getMinutes()}, Today`;
   }
-  return messageDate.toLocaleString();
+  return messageDate.toLocaleDateString();
 }

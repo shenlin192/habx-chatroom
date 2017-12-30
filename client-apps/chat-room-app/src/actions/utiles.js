@@ -1,15 +1,32 @@
 /**
  * Created by shenlin on 27/12/2017.
  */
+
+
+/**
+ * Randomly Generate a relative dark color
+ * @returns {string}
+ */
 export function getRandomColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';
   for (let i = 0; i < 6; i += 1) {
-    color += letters[Math.floor(Math.random() * 16)];
+    if (i < 2) {
+      color += letters[Math.floor(Math.random() * 10)];
+    } else {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
   }
   return color;
 }
 
+
+/**
+ * Transform messages into the following form and ordered by date
+ * [{name:'String', userId:'String', color:'String', content:'String', date:'String'}, ...]
+ * @param responseData
+ * @returns {Array}
+ */
 export function messagesTransform(responseData) {
   const { users } = responseData;
 
@@ -31,7 +48,6 @@ export function messagesTransform(responseData) {
       }
     });
   }
-
   // sort messages by date
   roomMessages.sort((m1, m2) =>
     new Date(m1.date).getTime() - new Date(m2.date).getTime());

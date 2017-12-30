@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
-import { setInputValue, receiveMessage, addMessage } from '../../../actions/chatRoomActions';
+import { setTempMessage, receiveMessage, addMessage, setTempUserName, setUserName, updateMessage } from '../../../actions/chatRoomActions';
 import { dateTransform } from './utiles';
 import './styles.css';
 import modify from './media/modify.png';
@@ -26,7 +26,8 @@ class Content extends Component {
       color: PropTypes.string,
     }).isRequired,
     dispatch: PropTypes.func.isRequired,
-    tempInputValue: PropTypes.string.isRequired,
+    tempMessage: PropTypes.string.isRequired,
+    tempUserName: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -44,25 +45,35 @@ class Content extends Component {
       this.scrollToBottom();
       this.props.dispatch(receiveMessage(message));
     });
+    this.socket.on('changeUserName', (updatedUser) => {
+      this.props.dispatch(updateMessage(updatedUser));
+    });
   }
+  
+  
+  // modify user name
+  changeEditMode = () => {
+    this.setState({ editMode: !this.state.editMode });
+  };
 
-  sendMessage = () => {
-    const value = this.props.tempInputValue.trim();
-    if (value) {
-      this.props.dispatch(setInputValue(''));
-      this.props.dispatch(addMessage(this.props.user, value));
-      this.scrollToBottom();
-      this.socket.emit('message', {
-        user: this.props.user,
-        value,
+  userNameChange = (event) => {
+    this.props.dispatch(setTempUserName(event.target.value));
+  };
+
+  saveUserName = () => {
+    this.changeEditMode();
+    const newName = this.props.tempUserName.trim();
+    if (newName) {
+      this.props.dispatch(setUserName(newName));
+      this.socket.emit('changeUserName', {
+        id: this.props.user.id,
+        name: newName,
       });
     }
   };
+  
 
-  messageChange = (event) => {
-    this.props.dispatch(setInputValue(event.target.value));
-  };
-
+  // send messages
   messageKeyUp = (event) => {
     if (event.keyCode === 13) {
       if (!event.nativeEvent.shiftKey) {
@@ -71,14 +82,29 @@ class Content extends Component {
     }
   };
 
+  messageChange = (event) => {
+    this.props.dispatch(setTempMessage(event.target.value));
+  };
+
+  sendMessage = () => {
+    const value = this.props.tempMessage.trim();
+    if (value) {
+      this.props.dispatch(setTempMessage(''));
+      this.props.dispatch(addMessage(this.props.user, value));
+      this.scrollToBottom();
+      this.socket.emit('message', {
+        user: this.props.user,
+        value,
+      });
+    }
+  };
+  
   scrollToBottom = () => {
     this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
   };
-
-  changeEditMode = () => {
-    this.setState({ editMode: !this.state.editMode });
-  };
-
+  
+  
+  // message history list
   messageList = () => {
     if (this.props.messages.length) {
       return this.props.messages.map(message => (
@@ -107,11 +133,22 @@ class Content extends Component {
         <section className="chat-header">
           {
             this.state.editMode ?
-              <img src={modify} alt="modify" onClick={this.changeEditMode} /> :
-              <img src={save} alt="save" onClick={this.changeEditMode} />
-           }
+              <img src={save} alt="save" onClick={this.saveUserName} /> :
+              <img src={modify} alt="modify" onClick={this.changeEditMode} />
+
+          }
           <div className="chat-about">
-            <div className="chat-with">{ this.props.user.name }</div>
+            {
+              this.state.editMode ?
+                <input
+                  className="usernameInput"
+                  type="text"
+                  maxLength="30"
+                  value={this.props.tempUserName}
+                  onChange={this.userNameChange}
+                /> :
+                <div className="chat-with">{ this.props.user.name }</div>
+            }
             <div className="chat-num-messages">already {this.props.messages.length} messages</div>
           </div>
         </section>
@@ -129,7 +166,7 @@ class Content extends Component {
             id="message-to-send"
             placeholder="Type your message"
             rows="2"
-            value={this.props.tempInputValue}
+            value={this.props.tempMessage}
             onChange={this.messageChange}
             onKeyUp={this.messageKeyUp}
           />
@@ -143,5 +180,6 @@ class Content extends Component {
 export default connect(store => ({
   messages: store.room.messages,
   user: store.room.user,
-  tempInputValue: store.room.tempInputValue,
+  tempMessage: store.room.tempMessage,
+  tempUserName: store.room.tempUserName,
 }))(Content);

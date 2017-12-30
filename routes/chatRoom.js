@@ -17,6 +17,9 @@ async function getCurrentRoom() {
   return currentRoom;
 }
 
+router.get('/', (req, res, next) => {
+  res.sendFile('client-apps/chat-room-app/build/index.html', { root: './' });
+});
 
 router.get('/room-info', (req, res, next) => {
   getCurrentRoom().then((currentRoom) => {
@@ -71,7 +74,23 @@ function chatRoom(io) {
         date: new Date().toISOString(),
       });
     });
-    // handle change name
+
+    // handle change user name
+    socket.on('changeUserName', async (updatedUser) => {
+      console.log(updatedUser);
+
+      const currentRoom = await ChatRoomModel.findOne({});
+      const currentUserIndex = currentRoom.users.findIndex(user =>
+        user._id.toString() === updatedUser.id);
+      if (currentUserIndex < 0) {
+        console.log('user not found');
+        return;
+      }
+      currentRoom.users[currentUserIndex].name = updatedUser.name;
+      await currentRoom.save();
+
+      socket.broadcast.emit('changeUserName', updatedUser);
+    });
   });
 
   return router;

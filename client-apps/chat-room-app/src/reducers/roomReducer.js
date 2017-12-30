@@ -6,13 +6,14 @@ export default function reducer(state = {
   fetching: false,
   fetched: false,
   error: null,
-  showChatRoom: Boolean(localStorage.id),
+  showChatRoom: Boolean(sessionStorage.id),
   messages: [],
-  tempInputValue: '',
+  tempMessage: ' ',
+  tempUserName: ' ',
   user: {
-    id: localStorage.id,
-    name: localStorage.name,
-    color: localStorage.color,
+    id: sessionStorage.id,
+    name: sessionStorage.name,
+    color: sessionStorage.color,
   },
 }, action) {
   switch (action.type) {
@@ -31,10 +32,38 @@ export default function reducer(state = {
       return { ...state, showChatRoom: action.payload };
     }
     case 'ADD_USER': {
-      return { ...state, user: action.payload };
+      return { ...state, user: action.payload, tempUserName: action.payload.name };
     }
-    case 'SET_INPUT_VALUE': {
-      return { ...state, tempInputValue: action.payload };
+    case 'SET_TEMP_MESSAGE': {
+      return { ...state, tempMessage: action.payload };
+    }
+    case 'SET_TEMP_USER_NAME': {
+      return { ...state, tempUserName: action.payload };
+    }
+    case 'SET_USER_NAME': {
+      return {
+        ...state,
+        user: {
+          ...state.user, name: action.payload,
+        },
+        messages: state.messages.map((message) => {
+          if (message.userId === state.user.id) {
+            return Object.assign(message, { name: action.payload });
+          }
+          return message;
+        }),
+      };
+    }
+    case 'UPDATE_MESSAGE': {
+      return {
+        ...state,
+        messages: state.messages.map((message) => {
+          if (message.userId === action.payload.id) {
+            return Object.assign(message, { name: action.payload.name });
+          }
+          return message;
+        }),
+      };
     }
     case 'RECEIVE_MESSAGE': {
       return {

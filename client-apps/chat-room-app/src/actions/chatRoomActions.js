@@ -2,10 +2,25 @@
  * Created by shenlin on 26/12/2017.
  */
 
-export function setInputValue(value) {
+export function setTempMessage(value) {
   return {
-    type: 'SET_INPUT_VALUE',
+    type: 'SET_TEMP_MESSAGE',
     payload: value,
+  };
+}
+
+export function setTempUserName(value) {
+  return {
+    type: 'SET_TEMP_USER_NAME',
+    payload: value,
+  };
+}
+
+export function setUserName(userName) {
+  sessionStorage.setItem('name', userName);
+  return {
+    type: 'SET_USER_NAME',
+    payload: userName,
   };
 }
 
@@ -27,5 +42,12 @@ export function addMessage(user, message) {
   return {
     type: 'RECEIVE_MESSAGE',
     payload,
+  };
+}
+
+export function updateMessage(updatedUser) {
+  return {
+    type: 'UPDATE_MESSAGE',
+    payload: updatedUser,
   };
 }
