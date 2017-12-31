@@ -9,33 +9,33 @@ const http = require('http');
 const index = require('./routes/index');
 const chatRoom = require('./routes/chatRoom');
 
+const chatRoomSocket = require('./services/websocket/chatRoom.socket');
+
 const app = express();
 
 // Socket.io
 const server = http.Server(app);
 const io = socketIo(server);
 
-
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use('/', index);
+app.use('/chat-room', chatRoom);
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'client-apps/chat-room-app/build')));
 
-// add socket io to response
+// add socket io to response and to app
 app.use((req, res, next) => {
   res.io = io;
   next();
 });
-
-app.use('/', index);
-app.use('/chat-room', chatRoom(io));
+chatRoomSocket(io);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
