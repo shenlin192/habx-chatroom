@@ -8,8 +8,8 @@ export default function reducer(state = {
   error: null,
   showChatRoom: Boolean(sessionStorage.id),
   messages: [],
-  tempMessage: ' ',
-  tempUserName: ' ',
+  tempMessage: '',
+  tempUserName: '',
   user: {
     id: sessionStorage.id,
     name: sessionStorage.name,
