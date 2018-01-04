@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www --ignore client-apps/"
+    "start": "nodemon ./bin/www --ignore client-apps/",
+    "test": "./node_modules/.bin/mocha --watch"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -20,10 +21,14 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.1.1",
+    "chai": "^4.1.2",
     "eslint": "^4.13.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.5.1",
+    "mocha": "^4.1.0",
+    "mocha-mongoose": "^1.2.0",
+    "supertest": "^3.0.0"
   }
 }

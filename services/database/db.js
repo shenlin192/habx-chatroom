@@ -3,7 +3,24 @@
  */
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.DB_URL, {
+let dbURL;
+
+switch (process.env.NODE_ENV) {
+  case 'development':
+    dbURL = process.env.DB_URL_DEV;
+    break;
+  case 'test':
+    dbURL = process.env.DB_URL_TEST;
+    break;
+  case 'production':
+    dbURL = process.env.DB_URL_PRO;
+    break;
+  default:
+    dbURL = process.env.DB_URL_PRO;
+}
+
+
+mongoose.connect(dbURL, {
   useMongoClient: true,
 }).then(() => {
   console.log('connection successed');

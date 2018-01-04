@@ -6,7 +6,9 @@
   },
   "env":{
     "node": true,
-    "browser": true
+    "browser": true,
+    "jest": true,
+    "mocha": true
   },
   "rules": {
     "no-mixed-operators": ["error", {"allowSamePrecedence": true}],

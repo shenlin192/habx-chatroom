@@ -5,10 +5,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const socketIo = require('socket.io');
 const http = require('http');
-
 const index = require('./routes/index');
 const chatRoom = require('./routes/chatRoom');
-
 const chatRoomSocket = require('./services/websocket/chatRoom.socket');
 
 const app = express();

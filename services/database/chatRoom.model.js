@@ -3,7 +3,7 @@
  */
 const db = require('./db');
 
-const ChartRoom = db.model('ChartRoom', {
+const ChatRoom = db.model('ChatRoom', {
   roomName: { type: String, required: true },
   users: [{
     name: { type: String, required: true },
@@ -15,4 +15,4 @@ const ChartRoom = db.model('ChartRoom', {
   }],
 });
 
-module.exports = ChartRoom;
+module.exports = ChatRoom;
