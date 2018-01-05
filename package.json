@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www --ignore client-apps/",
-    "test": "./node_modules/.bin/mocha --watch"
+    "test": "./node_modules/.bin/mocha --watch",
+    "test2": "nodemon --exec 'mocha -R min' test"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
