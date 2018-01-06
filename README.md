@@ -1,17 +1,21 @@
 <h1 align="center">HABX CHAT ROOM </h1>
 
-<h5 align="center">AN ONLINE CHAT EXPRESS APP</h5>
+<h5 align="center">A REAL TIME CHAT ROOM EXPRESS-REACT APP
+<a href="https://media.giphy.com/media/xUNd9CEkMcTaskmElW/giphy.gif">| Demo1</a>
+<a href="https://media.giphy.com/media/xUNd9CEkMcTaskmElW/giphy.gif">| Demo2</a>
+<a href="https://media.giphy.com/media/xUNd9CEkMcTaskmElW/giphy.gif">| Demo3</a>
+</h5>
 
 ## Overview
-This react application mainly contains 3 functionality:
+This application mainly contains 4 functionality:
 
-● Pas d'inscription mais l'utilisateur peut choisir son pseudo
-● Les utilisateurs peuvent envoyer des messages avec la touche entrée et avec un
-bouton envoyer
-● Une seule room / channel
-● Les messages sont persistants, recharger la page n'efface pas son contenu
+- A user can join the chat room after choosing a pseudo
+- Send and receive messages in real time
+- Changes of user name in real time
+- Messages are persistent, reloading the page does not erase its contents
 
 ## Usage
+
 
 
 ## File structure
