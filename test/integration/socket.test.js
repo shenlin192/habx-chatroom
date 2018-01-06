@@ -1,11 +1,10 @@
 /**
  * Created by shenlin on 05/01/2018.
  */
-process.env.NODE_ENV = 'test';
 const io = require('socket.io-client');
 const { expect } = require('chai');
-const clearDB = require('mocha-mongoose')(process.env.DB_URL_TEST, { noClear: true });
-const utiles = require('../services/database/utiles');
+const { clearDB } = require('./helper');
+const utiles = require('../../services/database/utiles');
 
 let sender;
 let receiver;

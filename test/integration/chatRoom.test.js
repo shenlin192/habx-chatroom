@@ -1,9 +1,8 @@
 /**
  * Created by shenlin on 04/01/2018.
  */
-process.env.NODE_ENV = 'test';
 const request = require('supertest');
-const { app } = require('../bin/www');
+const { app } = require('./helper');
 
 describe('test chat-room router', () => {
   it('should return an react app', (done) => {

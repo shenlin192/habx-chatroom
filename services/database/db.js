@@ -19,7 +19,6 @@ switch (process.env.NODE_ENV) {
     dbURL = process.env.DB_URL_PRO;
 }
 
-
 mongoose.connect(dbURL, {
   useMongoClient: true,
 }).then(() => {
