@@ -37,7 +37,7 @@ This application mainly contains 4 functionality:
 - Messages are persistent, reloading the page does not erase its contents
 
 Whenever a user closes the current tab, the user will be **disconnected** from the chat room.
-The next time this user comes back from the chat room, the system will consider it as a **new user**.
+The next time this user comes back to the chat room, the system will consider it as a **new user**.
 
 The application is fully **responsive** and can be used on mobile, iPad and desktop.
 
@@ -68,6 +68,8 @@ Start the express server
     cd ../../
     npm run start
     
+Open a browser and go to `localhost:8080/chat-room` 
+
 **Note:** 
 
 A `.env` file, which contains database username and password, needs to be added to the project's root directory.  
@@ -108,7 +110,7 @@ technologies/tools that were used and the reason why I chose them.
 After reading carefully the aim of this test and fully understand its demands, 
 the first thing I do is to decide the application's architecture.
 
-Since objective of this test is not only ** realizing functionality** 
+Since objective of this test is not only **realizing functionality** 
 but also providing a reasonable **project organization**, following aspects are 
 taken into consideration.
 
@@ -141,8 +143,8 @@ We will keep it because it's perfect for developing simple web pages along with 
 
 
 Next, a `client-app` folder is added in order to achieve the concept of front-end, back-end separation. 
-This folder contains all front-end applications and it's framework neutral. If one day we want to change the implementation
-from `react` to `vue` or `angular`, nothing in the back-end needs to be changed since they consume API only.
+This folder contains all front-end applications and it's framework neutral. If one day we want to change the **implementation
+from `react` to `vue` to `angular`, or using all of them, nothing in the back-end needs to be changed since they consume API only**.
 
 ````
 \bin
@@ -157,9 +159,9 @@ from `react` to `vue` or `angular`, nothing in the back-end needs to be changed 
    app.js
 ````
 
-To better modularise the code, a `services` containing functionality about `database`, `WebSocket`, `email` or `payment` is needed.
-In order to guarantee robustness, a `test` folder is added for `unit testing`, `integration testing` as well as `e2e testing`.
-Finally, a `doc` should be added for documentation.  
+To better modularise the code, a `services` folder containing functionality about `database`, `WebSocket`, `email` or `payment` is needed.
+In order to guarantee robustness, a `test` folder is added for `integration` and `e2e` test.
+Finally, a `doc` folder is added for documentation.  
 
 ````
 \bin
@@ -175,7 +177,8 @@ Finally, a `doc` should be added for documentation.
 
 ### React application file structure
 To quick start a dynamic and **data-driven** react application, `create-react-app` and `Redux` are chosen immediately without a doubt. 
-As for testing, jest is used as it comes along with create-react-app. 
+As for testing, jest is used as it comes along with `create-react-app`. To achieve the goal of "reloading the page without erasing its contents",
+`sessionStorage` is used since it's easier for development and test compared with `localStorage` and `cookie`
 
 The files in this project are organized in a classical `React-Redux` application way like:
 
