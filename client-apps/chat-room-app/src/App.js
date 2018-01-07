@@ -21,12 +21,12 @@ class App extends Component {
   render() {
     return (
       <main>
-        <section className={this.props.showChatRoom ? 'hide' : ''}>
-          <NewUser />
-        </section>
-        <section className={!this.props.showChatRoom ? 'hide' : ''} >
-          <ChatRoom />
-        </section>
+        {(() => {
+          if (!this.props.showChatRoom) {
+            return <NewUser />;
+          }
+          return <ChatRoom />;
+        })()}
       </main>
     );
   }
