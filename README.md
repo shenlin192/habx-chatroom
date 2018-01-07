@@ -47,7 +47,7 @@ The application is fully **responsive** and can be used on mobile, iPad and desk
 ### Quick start
 Clone this repo via git
 
-    git clone git@github.com:shenlin192/habx-chatroom.git
+    git clone https://github.com/shenlin192/habx-chatroom.git
     
 Install express dependencies via npm.
 
@@ -56,7 +56,7 @@ Install express dependencies via npm.
         
 Install react dependencies via npm.
 
-     cd ./client-app/chat-room-app
+     cd client-app/chat-room-app
      npm install 
      
 Build react app for production 
@@ -144,7 +144,7 @@ We will keep it because it's perfect for developing simple web pages along with 
 
 Next, a `client-app` folder is added in order to achieve the concept of front-end, back-end separation. 
 This folder contains all front-end applications and it's framework neutral. If one day we want to change the **implementation
-from `react` to `vue` to `angular`, or using all of them, nothing in the back-end needs to be changed since they consume API only**.
+from `react` to `vue` to `angular`, or using all of them, nothing in the back-end needs to be changed since client apps consume API only**.
 
 ````
 \bin
@@ -178,7 +178,7 @@ Finally, a `doc` folder is added for documentation.
 ### React application file structure
 To quick start a dynamic and **data-driven** react application, `create-react-app` and `Redux` are chosen immediately without a doubt. 
 As for testing, jest is used as it comes along with `create-react-app`. To achieve the goal of "reloading the page without erasing its contents",
-`sessionStorage` is used since it's easier for development and test compared with `localStorage` and `cookie`
+`sessionStorage` is used since it's easier for development and test compared with `localStorage` and `cookie`.
 
 The files in this project are organized in a classical `React-Redux` application way like:
 
