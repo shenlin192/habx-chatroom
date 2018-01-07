@@ -8,15 +8,15 @@
 
 
 <p align="center">
-<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/sendMessage.gif?raw=true" alt="demo" style="max-width:100%">
+<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/sendMessage.gif?raw=true" alt="demo1" style="max-width:100%">
 </p>
 
 <p align="center">
-<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/changeName.gif?raw=true" alt="demo" style="max-width:100%">
+<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/changeName.gif?raw=true" alt="demo2" style="max-width:100%">
 </p>
 
 <p align="center">
-<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/refresh.gif?raw=true" alt="demo" style="max-width:50%">
+<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/refresh.gif?raw=true" alt="demo3" style="max-width:200px">
 </p>
 
 
