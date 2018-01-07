@@ -24,7 +24,7 @@
 
 <h5 align="center">Messages are persistent, reloading the page does not erase its contents</h5>
 <p align="center">
-<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/refresh.gif?raw=true" alt="demo3" width="40%">
+<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/refresh.gif?raw=true" alt="demo3" width="30%">
 </p>
 
 
