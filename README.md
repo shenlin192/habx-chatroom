@@ -7,16 +7,23 @@
 </h5>
 
 
+<h5 align="center">Chose username and communication</h5>
+
 <p align="center">
 <img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/sendMessage.gif?raw=true" alt="demo1" style="max-width:100%">
 </p>
 
-<p align="center">
-<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/changeName.gif?raw=true" alt="demo2" style="max-width:100%">
-</p>
+<h5 align="center">Change user name</h5>
 
 <p align="center">
-<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/refresh.gif?raw=true" alt="demo3" style="max-width:200px">
+<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/changeName.gif?raw=true" alt="demo2" width="110%">
+</p>
+
+
+<h5 align="center">Messages are persistent</h5>
+
+<p align="center">
+<img src="https://github.com/shenlin192/habx-chatroom/blob/master/doc/refresh.gif?raw=true" alt="demo3" width="40%">
 </p>
 
 
